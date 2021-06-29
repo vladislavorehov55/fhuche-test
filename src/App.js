@@ -43,21 +43,22 @@ function App() {
   }
   const search = (text) => {
     let newDataset;
+    console.log('sortedDataset', sortedDataset);
     if (sortedDataset.length !== 0) {
       newDataset = sortedDataset.slice();
     }
     else {
       newDataset = dataset.slice();
     }
-    newDataset.filter(item => {
+    const b = newDataset.filter(item => {
       if (item.id.toString().match(text)) return true;
       if (item.firstName.match(text)) return true;
     })
-    console.log(newDataset)
+    setFilteredDataset(b);
   }
   const getRenderedDataset = () => {
-    if (sortedDataset.length !== 0) return sortedDataset;
     if (filteredDataset.length !== 0) return filteredDataset;
+    if (sortedDataset.length !== 0) return sortedDataset;
     if (dataset.length !== 0) return dataset;
   }
   return (
