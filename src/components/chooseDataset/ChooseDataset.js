@@ -1,11 +1,11 @@
 import React from 'react';
-
+import styles from './ChooseDataset.module.css'
 const ChooseDataset = ({chooseDataset}) => {
     return (
-        <div onClick={chooseDataset}>
+        <div className={styles.wrapper} onClick={chooseDataset}>
             <h1>Выберете загружаемый датасет</h1>
-            <button data-size='small'>Маленький</button>
-            <button data-size='big'>Большой</button>
+            <button className={styles.btn} data-size='small'>Маленький</button>
+            <button className={styles.btn} data-size='big'>Большой</button>
         </div>
     )
 }

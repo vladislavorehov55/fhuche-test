@@ -1,0 +1,19 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.searchField {
+    height: 35px;
+    width: 100%;
+    margin-bottom: 1%;
+}
+.btn {
+    background: blue;
+    font-size: 15px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    width: 90px;
+    height: 25px;
+}
