@@ -7,8 +7,7 @@ import Search from "./components/Search/Search";
 function App() {
   const [isShownChooseDataset, setIsShownChooseDataset] = useState(true);
   const [dataset, setDataset] = useState([]);
-  const [sortedDataset, setSortedDataset] = useState([]);
-  const [filteredDataset, setFilteredDataset] = useState([]);
+  const [changedDataset, setChangedDataset] = useState([]);
 
 
   const chooseDataset = async (e) => {
@@ -39,28 +38,17 @@ function App() {
         else return 1;
       })
     }
-    setSortedDataset(newSortedDataset)
+    setChangedDataset(newSortedDataset)
   }
   const search = (text) => {
-    let newDataset;
-    console.log('sortedDataset', sortedDataset);
-    if (sortedDataset.length !== 0) {
-      newDataset = sortedDataset.slice();
-    }
-    else {
-      newDataset = dataset.slice();
-    }
+    const newDataset = dataset.slice();
     const b = newDataset.filter(item => {
       if (item.id.toString().match(text)) return true;
       if (item.firstName.match(text)) return true;
     })
-    setFilteredDataset(b);
+    setChangedDataset(b);
   }
-  const getRenderedDataset = () => {
-    if (filteredDataset.length !== 0) return filteredDataset;
-    if (sortedDataset.length !== 0) return sortedDataset;
-    if (dataset.length !== 0) return dataset;
-  }
+
   return (
     <div className={styles.app}>
       {
@@ -70,7 +58,7 @@ function App() {
         !isShownChooseDataset && <Search search={search}/>
       }
       {
-        dataset.length !== 0 && <Dataset dataset={getRenderedDataset()}
+        dataset.length !== 0 && <Dataset dataset={changedDataset.length === 0 ? dataset : changedDataset}
                                          sortByCol={sortByCol}/>
       }
     </div>
